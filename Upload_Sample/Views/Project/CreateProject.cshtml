@@ -1,0 +1,78 @@
+﻿@model Upload_Sample.Models.Entities.Project
+
+@{
+    ViewData["Title"] = "CreateProject";
+}
+
+<div class="container">
+    <!-- Basic form layout section start -->
+    <section id="horizontal-form-layouts">
+        <div class="row">
+            <div class="col-xl-6 offset-3 col-lg-12">
+                <div class="card mt-4">
+                    <div class="card-content collpase show">
+                        <div class="card-header">
+                            <h2>Create Project</h2>
+                        </div>
+                        <div class="card-body">
+                            <form asp-action="CreateProject" enctype="multipart/form-data" class="form form-horizontal">
+                                <div class="form-body" id="list">
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput5">Manager</label>
+                                        <div class="col-md-9">
+                                            <input type="text" asp-for="Manager" id="projectinput5" class="form-control" placeholder="Manager">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput5">Project Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" asp-for="ProjectName" id="projectinput5" class="form-control" placeholder="Project Name">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row" >
+                                        <label class="col-md-3 label-control">Select File <span id="indexNum">1</span></label>
+                                        <div class="col-md-9">
+                                            <label id="projectinput8" class="file center-block">
+                                                <input type="file" name="file" id="file">
+                                                <span class="file-custom"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <button type="button" class="btn btn-primary mb-1" id="addMore">Add</button>
+
+                                <div class="form-actions right">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="la la-check-square-o"></i> Upload
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // Basic form layout section end -->
+</div>
+
+@section script
+{
+    <script>
+        var indexNum = 1;
+        var form1 = "";
+        var form2 = "<div class='form-group row'><label class='col-md-3 label-control'>Select File<span id='indexNum'>'" + indexNum + "'</span></label><div class='col-md-9'><label id='projectinput8' class='file center-block'><input type='file' name='file' id='file'><span class='file-custom'></span></label></div></div>";
+        $("#addMore").click(function () {
+
+            $("#list").append(form2, indexNum);
+            index++;
+            indexNum++;
+        });
+    </script>
+}

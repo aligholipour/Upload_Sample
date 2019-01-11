@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Upload_Sample.Models.Entities.Project>
+
+@{
+    ViewData["Title"] = "ProjectManagement";
+}
+
+@{
+    var i = 1;
+}
+
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-header">
+            <a href="/Project/CreateProject" class="btn btn-primary col-md-2">New Project</a>
+        </div>
+    </div>
+    <div class="card-content collapse show " style="background-color:#fff;">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Manager</th>
+                        <th>ProjectName</th>
+                        <th>ProjectCreated</th>
+                        <th>Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var project in Model)
+                    {
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td><img src="~/images/@project.ImagePath" alt="@project.ProjectName" style="border-radius:50%;" height="30" width="30" /></td>
+                            <td>@project.Manager</td>
+                            <td>@project.ProjectName</td>
+                            <td>@project.ProjectCreated</td>
+                            <td>
+                                <a href="/Upload/EditUpload/@project.ProjectId" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="/Upload/DeleteUpload/@project.ProjectId" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@model Upload_Sample.Models.Entities.Artist
+
+@{
+    ViewData["Title"] = "EditUpload";
+}
+
+<div class="container">
+    <!-- Basic form layout section start -->
+    <section id="horizontal-form-layouts">
+        <div class="row">
+            <div class="col-xl-8 offset-2 col-lg-12">
+                <div class="card mt-4">
+                    <div class="card-content collpase show">
+                        <div class="card-header">
+                            <img src="~/images/@Model.ImagePath" class="float-right" width="150" height="150" alt="Alternate Text" />
+
+                            <h2>Edit Artist</h2>
+
+                        </div>
+                        <div class="card-body">
+                            <form asp-action="EditArtist" enctype="multipart/form-data" class="form form-horizontal">
+
+                                <input type="hidden" asp-for="Id" />
+                                <input type="hidden" asp-for="ImagePath" />
+                                <input type="hidden" asp-for="TimeCreated" />
+
+                                <div class="form-body">
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput5">Upload Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" asp-for="Name" id="projectinput5" class="form-control" placeholder="Upload Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control">Select File</label>
+                                        <div class="col-md-9">
+                                            <label id="projectinput8" class="file center-block">
+                                                <input type="file" name="file" id="file">
+                                                <span class="file-custom"></span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                                <div class="form-actions right">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="la la-check-square-o"></i> Edit
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- // Basic form layout section end -->
+</div>

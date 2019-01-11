@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Upload_Sample.Models.Entities.Artist>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <!-- Page content-->
+    <section class="team-section my-5 p-1">
+
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            @foreach (var item in Model)
+            {
+                <div class="col-md-2">
+                    <div class="avatar mx-auto">
+                        <img src="~/images/@item.ImagePath" class="rounded z-depth-1-half" alt="Sample avatar">
+                    </div>
+                    <h6 class="text-uppercase text-center grey-text mb-3 my-3"><strong>@item.Name</strong></h6>
+                    <!-- Facebook-->
+                    <div class="text-center">
+                        <a href="/Upload/Album/@item.Id" class="btn btn-outline-primary btn-rounded waves-effect">Albums</a>
+                    </div>
+                    <i class="far fa-edit"></i>
+                </div>
+            }
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </section>
+</div>

@@ -1,0 +1,42 @@
+﻿@model Upload_Sample.Models.ViewModels.ArtistViewModel
+
+@{
+    ViewData["Title"] = "Album";
+}
+
+
+<div class="container">
+    <div class="col-xl-3 offset-4 mt-4">
+        <img src="~/images/@Model.ImagePath" alt="@Model.Name" class="rounded-circle" />
+    </div>
+
+    <section class="team-section my-5 p-1">
+
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            @foreach (var album in Model.Albums)
+            {
+            <div class="col-md-2">
+                <div class="avatar mx-auto">
+                    <img src="~/images/albums/@album.ImagePath" class="rounded z-depth-1-half" alt="Sample avatar">
+                </div>
+                <h6 class="text-uppercase text-center grey-text mb-3 my-3"><strong>@album.Name</strong></h6>
+                <h6 style="font-size:11px;" class="text-uppercase text-center grey-text mb-3 my-3">Tracks : <strong>@album.TrackCount</strong></h6>
+                <!-- Facebook-->
+                @*<div class="text-center">
+            <a href="/Upload/Album/@album.Id" class="btn btn-outline-primary btn-rounded waves-effect">Albums</a>
+        </div>*@
+                <i class="far fa-edit"></i>
+            </div>
+            }
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </section>
+
+</div>
