@@ -1,0 +1,38 @@
+﻿@model Upload_Sample.Models.ViewModels.SongViewModel
+
+@{
+    ViewData["Title"] = "Song";
+    var i = 1;
+}
+
+<div class="container">
+    <div class="row d-flex justify-content-center mt-4">
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <!--Panel-->
+            <div class="card mb-3">
+                <div class="view overlay">
+                    <img src="@Model.AlbumImage" style="height:300px;" class="card-img-top" alt="">
+                </div>
+                <div class="card-header">Album Name : @Model.AlbumName<strong></strong></div>
+                <div class="card-body">
+                    @foreach (var item in Model.Song)
+                    {
+                        <div class="row">
+                            <div class="d-inline" style="margin: 15px 30px;"><strong>@i - @item.Name</strong></div>
+                            <div class="d-inline text-white">
+                                <a class="btn btn-info btn-md waves-effect waves-light" href="https://mdbootstrap.com/mdb-affiliate-tutorial/">
+                                    Download
+                                </a>
+                            </div>
+                        </div>
+                        i++;
+                    }
+                </div>
+            </div>
+            <!--/.Panel-->
+
+        </div>
+    </div>
+</div>

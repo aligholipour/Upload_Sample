@@ -23,27 +23,29 @@
                         <th>#</th>
                         <th>Image</th>
                         <th>Upload Name</th>
+                        <th>Album Count</th>
                         <th>FileCreatedDate</th>
                         <th>Info</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var upload in Model)
-                        {
-                            <tr>
-                                <th scope="row">@i</th>
-                                <td><img src="~/images/@upload.ImagePath" alt="@upload.Name" style="border-radius:50%;" height="30" width="30" /></td>
-                                <td>@upload.Name</td>
-                                <td>@upload.TimeCreated</td>
-                                <td>
-                                    <a href="/Upload/EditArtist/@upload.Id" class="btn btn-sm btn-outline-primary">Edit</a>
-                                    <a href="/Upload/DeleteArtist/@upload.Id" class="btn btn-sm btn-outline-danger">Delete</a>
-                                    <a href="/Upload/Album/@upload.Id" class="btn btn-sm btn-outline-secondary">Album</a>
-                                    <a href="/Upload/CreateAlbum/@upload.Id" class="btn btn-sm btn-outline-info">Add Album</a>
-                                </td>
-                            </tr>
-                            i++;
-                        }
+                    {
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td><img src="~/images/@upload.ImagePath" alt="@upload.Name" style="border-radius:50%;" height="30" width="30" /></td>
+                            <td>@upload.Name</td>
+                            <td>@upload.Albums.Count()</td>
+                            <td>@upload.TimeCreated</td>
+                            <td>
+                                <a href="/Upload/EditArtist/@upload.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="/Upload/DeleteArtist/@upload.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                                <a href="/Upload/Album/@upload.Id" class="btn btn-sm btn-outline-secondary">Album</a>
+                                <a href="/Upload/CreateAlbum/@upload.Id" class="btn btn-sm btn-outline-info">Add Album</a>
+                            </td>
+                        </tr>
+                        i++;
+                    }
                 </tbody>
             </table>
         </div>

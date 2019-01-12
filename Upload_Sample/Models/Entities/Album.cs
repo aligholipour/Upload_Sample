@@ -15,5 +15,7 @@ namespace Upload_Sample.Models.Entities
         // Relation
         public int ArtistId { get; set; }
         public Artist Artist { get; set; }
+        
+        public IEnumerable<Song> Songs { get; set; }
     }
 }

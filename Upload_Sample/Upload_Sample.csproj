@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\files\songs\" />
     <Folder Include="wwwroot\images\albums\" />
   </ItemGroup>
 

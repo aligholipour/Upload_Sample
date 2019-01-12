@@ -18,5 +18,6 @@ namespace Upload_Sample.Models
         public DbSet<Project> Projects { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Podcast> Podcasts { get; set; }
+        public DbSet<Song> Songs { get; set; }
     }
 }

@@ -1,0 +1,56 @@
+﻿@model Upload_Sample.Models.Entities.Song
+
+@{
+    ViewData["Title"] = "CreateSong";
+}
+
+<div class="container">
+    <!-- Basic form layout section start -->
+    <section id="horizontal-form-layouts">
+        <div class="row">
+            <div class="col-xl-6 offset-3 col-lg-12">
+                <div class="card mt-4">
+                    <div class="card-content collpase show">
+                        <div class="card-header">
+                            <h2>Add Album</h2>
+                        </div>
+                        <div class="card-body">
+                            <form asp-action="CreateSong" asp-controller="Upload" enctype="multipart/form-data" class="form form-horizontal">
+                                <div class="form-body" id="list">
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput5">Song Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" asp-for="Name" id="projectinput5" class="form-control" placeholder="Song Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control">File</label>
+                                        <div class="col-md-9">
+                                            <label id="projectinput8" class="file center-block">
+                                                <input type="file" name="file" id="file">
+                                                <span class="file-custom"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*<div class="btn btn-success mb-4" id="addMore">Add</div>*@
+
+                                <div class="form-actions right">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="la la-check-square-o"></i> Add Song
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- // Basic form layout section end -->
+</div>

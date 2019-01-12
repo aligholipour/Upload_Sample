@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Upload_Sample.Models;
 using Upload_Sample.Models.Entities;
 using Upload_Sample.Models.ViewModels;
@@ -22,7 +23,7 @@ namespace Upload_Sample.Controllers
 
         public IActionResult ArtistList()
         {
-            var list = _context.Artists.ToList();
+            var list = _context.Artists.Include(a=>a.Albums).ToList();
             return View(list);
         }
 
@@ -41,7 +42,7 @@ namespace Upload_Sample.Controllers
             }
 
             upload.TimeCreated = DateTime.Now;
-            upload.ImagePath = file.FileName;
+            upload.ImagePath = "/images/" +  file.FileName;
             _context.Artists.Add(upload);
             _context.SaveChanges();
 
@@ -98,6 +99,7 @@ namespace Upload_Sample.Controllers
             return View(artist);
         }
 
+        [HttpGet]
         public IActionResult CreateAlbum()
         {
             return View();
@@ -125,41 +127,48 @@ namespace Upload_Sample.Controllers
             return RedirectToAction("ArtistList");
         }
 
-        public IActionResult MultipleUploadFile()
+        public IActionResult Song(int id)
+        {
+            var findAlbum = _context.Songs
+                .Where(s=>s.AlbumId == id)
+                .Include(a => a.Album)
+                .ToList();
+
+            var model = new SongViewModel
+            {
+                Song = findAlbum,
+                AlbumImage = _context.Albums.Find(id).ImagePath,
+                AlbumName = _context.Albums.Find(id).Name
+            };
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult CreateSong()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult MultipleUploadFile(Artist upload, IList<IFormFile> file)
+        public IActionResult CreateSong(Song song, IFormFile file)
         {
-            upload.TimeCreated = DateTime.Now;
-            var newUpload = _context.Artists.Add(upload);
-            _context.SaveChanges();
-
-            foreach (var item in file)
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files/songs", file.FileName);
+            using (var stream = new FileStream(path, FileMode.Create))
             {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", item.FileName);
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    item.CopyTo(stream);
-                }
-
-                _context.Albums.Add(new Album
-                {
-                    ImagePath = item.FileName,
-                    ArtistId = newUpload.Entity.Id
-                });
+                file.CopyTo(stream);
             }
 
+            var model = _context.Songs.Add(new Song
+            {
+                Name = song.Name,
+                File = "/files/songs/" + file.FileName,
+                AlbumId = song.Id
+            });
+
             _context.SaveChanges();
 
-            return RedirectToAction("UploadList");
-        }
-
-        public IActionResult Podcast()
-        {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

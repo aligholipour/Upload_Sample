@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="col-xl-3 offset-4 mt-4">
-        <img src="~/images/@Model.ImagePath" alt="@Model.Name" class="rounded-circle" />
+        <img src="~/images/@Model.ImagePath" alt="@Model.Name" class="rounded-circle" style="width:100%;" />
     </div>
 
     <section class="team-section my-5 p-1">
@@ -19,18 +19,23 @@
             <!-- Grid column -->
             @foreach (var album in Model.Albums)
             {
-            <div class="col-md-2">
-                <div class="avatar mx-auto">
-                    <img src="@album.ImagePath" class="rounded z-depth-1-half" alt="Sample avatar">
+                <div class="col-md-2">
+                    <a href="/Upload/Song/@album.Id">
+                        <div class="avatar mx-auto">
+                            <img src="@album.ImagePath" class="rounded z-depth-1-half" alt="Sample avatar" style="width:100%">
+                        </div>
+                    </a>
+                    <h6 class="text-uppercase text-center grey-text mb-3 my-3"><strong>@album.Name</strong></h6>
+                    <h6 style="font-size:11px;" class="text-uppercase text-center grey-text mb-3 my-3">Tracks : <strong>@album.TrackCount</strong></h6>
+                    <div class="text-center">
+                        <a href="/Upload/CreateSong/@album.Id" style="font-size:12px;" class="btn btn-outline-dark btn-rounded waves-effect">Add Song</a>
+                    </div>
+                    <!-- Facebook-->
+                    @*<div class="text-center">
+                            <a href="/Upload/Album/@album.Id" class="btn btn-outline-primary btn-rounded waves-effect">Albums</a>
+                        </div>*@
+                    <i class="far fa-edit"></i>
                 </div>
-                <h6 class="text-uppercase text-center grey-text mb-3 my-3"><strong>@album.Name</strong></h6>
-                <h6 style="font-size:11px;" class="text-uppercase text-center grey-text mb-3 my-3">Tracks : <strong>@album.TrackCount</strong></h6>
-                <!-- Facebook-->
-                @*<div class="text-center">
-            <a href="/Upload/Album/@album.Id" class="btn btn-outline-primary btn-rounded waves-effect">Albums</a>
-        </div>*@
-                <i class="far fa-edit"></i>
-            </div>
             }
             <!-- Grid column -->
 

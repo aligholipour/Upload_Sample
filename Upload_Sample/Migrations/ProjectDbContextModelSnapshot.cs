@@ -90,11 +90,37 @@ namespace Upload_Sample.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("Upload_Sample.Models.Entities.Song", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AlbumId");
+
+                    b.Property<string>("File");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlbumId");
+
+                    b.ToTable("Songs");
+                });
+
             modelBuilder.Entity("Upload_Sample.Models.Entities.Album", b =>
                 {
                     b.HasOne("Upload_Sample.Models.Entities.Artist", "Artist")
                         .WithMany("Albums")
                         .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Upload_Sample.Models.Entities.Song", b =>
+                {
+                    b.HasOne("Upload_Sample.Models.Entities.Album", "Album")
+                        .WithMany("Songs")
+                        .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
