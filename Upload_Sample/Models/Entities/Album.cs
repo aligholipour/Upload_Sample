@@ -11,6 +11,9 @@ namespace Upload_Sample.Models.Entities
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public int TrackCount { get; set; }
+
+        // Relation
         public int ArtistId { get; set; }
+        public Artist Artist { get; set; }
     }
 }

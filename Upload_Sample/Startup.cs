@@ -16,7 +16,7 @@ namespace Upload_Sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ProjectDbContext>(options => 
-            options.UseSqlite("Data Source=app.db"));
+            options.UseSqlite("Data Source=app2.db"));
 
             services.AddMvc();
         }

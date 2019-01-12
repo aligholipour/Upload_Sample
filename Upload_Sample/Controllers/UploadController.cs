@@ -104,24 +104,21 @@ namespace Upload_Sample.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAlbum(List<AlbumViewModel> album /*Album album, IList<IFormFile> file*/)
+        public IActionResult CreateAlbum(Album album, IFormFile file)
         {
-            foreach (var item in album)
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/albums", file.FileName);
+            using (var stream = new FileStream(path, FileMode.Create))
             {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/albums", item.File.FileName);
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    item.File.CopyTo(stream);
-                }
-
-                _context.Albums.Add(new Album
-                {
-                    Name = item.Album.Name,
-                    TrackCount = item.Album.TrackCount,
-                    ImagePath = item.File.FileName,
-                    ArtistId = item.Album.Id
-                });
+                file.CopyTo(stream);
             }
+
+            _context.Albums.Add(new Album
+            {
+                Name = album.Name,
+                TrackCount = album.TrackCount,
+                ImagePath = "/images/albums/" + file.FileName,
+                ArtistId = album.Id
+            });
 
             _context.SaveChanges();
 
@@ -156,8 +153,13 @@ namespace Upload_Sample.Controllers
             }
 
             _context.SaveChanges();
-            
+
             return RedirectToAction("UploadList");
+        }
+
+        public IActionResult Podcast()
+        {
+            return View();
         }
     }
 }

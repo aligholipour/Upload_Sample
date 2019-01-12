@@ -11,5 +11,8 @@ namespace Upload_Sample.Models.Entities
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public DateTime TimeCreated { get; set; }
+
+        // Relation
+        public IEnumerable<Album> Albums { get; set; }
     }
 }

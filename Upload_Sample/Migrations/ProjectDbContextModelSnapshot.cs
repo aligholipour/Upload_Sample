@@ -31,6 +31,8 @@ namespace Upload_Sample.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ArtistId");
+
                     b.ToTable("Albums");
                 });
 
@@ -50,6 +52,26 @@ namespace Upload_Sample.Migrations
                     b.ToTable("Artists");
                 });
 
+            modelBuilder.Entity("Upload_Sample.Models.Entities.Podcast", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ArtistName");
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("Image");
+
+                    b.Property<string>("PodcastName");
+
+                    b.Property<string>("TrackFile");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Podcasts");
+                });
+
             modelBuilder.Entity("Upload_Sample.Models.Entities.Project", b =>
                 {
                     b.Property<int>("ProjectId")
@@ -66,6 +88,14 @@ namespace Upload_Sample.Migrations
                     b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("Upload_Sample.Models.Entities.Album", b =>
+                {
+                    b.HasOne("Upload_Sample.Models.Entities.Artist", "Artist")
+                        .WithMany("Albums")
+                        .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
