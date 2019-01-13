@@ -1,0 +1,97 @@
+﻿@model Upload_Sample.Models.ViewModels.PodcastViewModel
+
+@{
+    ViewData["Title"] = "CreatePodcast";
+}
+
+<div class="container">
+    <!-- Basic form layout section start -->
+    <section id="horizontal-form-layouts">
+        <div class="row">
+            <div class="col-xl-6 offset-3 col-lg-12">
+                <div class="card mt-4">
+                    <div class="card-content collpase show">
+                        <div class="card-header">
+                            <h2>Add Podcast</h2>
+                        </div>
+                        <div class="card-body">
+                            <form asp-action="CreatePodcast" asp-controller="FullUpload" enctype="multipart/form-data" class="form form-horizontal">
+                                <div class="form-body" id="list">
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput5">Artist Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" asp-for="Podcasts.ArtistName" id="projectinput5" class="form-control" placeholder="Artist Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput5">Podcast Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" asp-for="Podcasts.PodcastName" id="projectinput5" class="form-control" placeholder="Podcast Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control">Image</label>
+                                        <div class="col-md-9">
+                                            <label id="projectinput8" class="file center-block">
+                                                <input type="file" name="image" id="file">
+                                                <span class="file-custom"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-9 label-control" for="projectinput5">Track Name</label>
+                                            <div class="col-md-12">
+                                                <input type="text" name="podcast[0].TrackName" id="projectinput5" class="form-control" placeholder="Track Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-6 label-control">Music File</label>
+                                            <div class="col-md-6">
+                                                <label id="projectinput8" class="file center-block">
+                                                    <input type="file" name="file[0]" id="file">
+                                                    <span class="file-custom"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="btn btn-success mb-4" id="addMore">Add</div>
+
+                                <div class="form-actions right">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="la la-check-square-o"></i> Create
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- // Basic form layout section end -->
+</div>
+
+@section script
+{
+    <script>
+        var index = 1;
+        $("#addMore").click(function () {
+            var form1 = "<div class='form-row'><div class='form-group col-md-6'><label class='col-md-9 label-control' for='projectinput5'>Track Name</label><div class='col-md-12'><input type='text' asp-for='TrackName' id='projectinput5' class='form-control' placeholder='Track Name'></div></div>";
+            var form2 = "<div class='form-group col-md-6'><label class='col-md-6 label-control'>Music File</label><div class='col-md-6'><label id='projectinput8' class='file center-block'><input type='file' name='music' id='file'><span class='file-custom'></span></label></div></div></div>";
+            //var form3 = "<div class='form-group row'><label class='col-md-3 label-control'>Image</label><div class='col-md-9'><label id='projectinput8' class='file center-block'><input type='file' name='file[" + index + "]' id='file'><span class='file-custom'></span></label></div></div>";
+            $("#list").append(form1 + form2);
+            index++;
+        });
+    </script>
+}

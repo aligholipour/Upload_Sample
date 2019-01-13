@@ -18,8 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\files\podcasts\" />
     <Folder Include="wwwroot\files\songs\" />
     <Folder Include="wwwroot\images\albums\" />
+    <Folder Include="wwwroot\images\podcasts\" />
   </ItemGroup>
 
 </Project>

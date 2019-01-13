@@ -1,28 +1,28 @@
-﻿@model IEnumerable<Upload_Sample.Models.Entities.Artist>
+﻿@model Upload_Sample.Models.ViewModels.IndexViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<div class="container">
+<section class="container">
     <!-- Page content-->
     <section class="team-section my-5 p-1">
 
-
+        <h2>Artists</h2>
         <!-- Grid row -->
         <div class="row">
 
             <!-- Grid column -->
-            @foreach (var item in Model)
+            @foreach (var artist in Model.Artist)
             {
                 <div class="col-md-2">
                     <div class="avatar mx-auto">
-                        <img src="~/images/@item.ImagePath" class="rounded z-depth-1-half" alt="Sample avatar">
+                        <img src="@artist.ImagePath" class="z-depth-1-half" alt="Sample avatar">
                     </div>
-                    <h6 class="text-uppercase text-center grey-text mb-3 my-3"><strong>@item.Name</strong></h6>
+                    <h6 class="text-uppercase text-center grey-text mb-3 my-3" style="font-size:14px;"><strong>@artist.Name</strong></h6>
                     <!-- Facebook-->
                     <div class="text-center">
-                        <a href="/Upload/Album/@item.Id" class="btn btn-outline-primary btn-rounded waves-effect">Albums</a>
+                        <a href="/Upload/Album/@artist.Id" class="btn btn-outline-primary btn-rounded waves-effect">Albums</a>
                     </div>
                     <i class="far fa-edit"></i>
                 </div>
@@ -33,4 +33,31 @@
         <!-- Grid row -->
 
     </section>
+</section>
+
+<div class="container-fluid bac-albums">
+    <div class="container pt-1">
+        <section>
+            <h2 class="mt-5 mb-3">Albums</h2>
+            <!-- Grid Album -->
+            <div class="row">
+
+                <!-- Grid column -->
+                @foreach (var album in Model.Album)
+                {
+                    <div class="col-md-2">
+                        <a href="/Upload/Song/@album.Id">
+                            <div class="avatar mx-auto">
+                                <img src="@album.ImagePath" class="rounded z-depth-1-half" alt="Sample avatar" style="width:100%; height:160px;">
+                            </div>
+                        </a>
+                        <h6 class="text-uppercase text-center grey-text mb-3 my-3" style="font-size:14px;"><strong>@album.Name</strong></h6>
+                    </div>
+                }
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid Album -->
+        </section>
+    </div>
 </div>

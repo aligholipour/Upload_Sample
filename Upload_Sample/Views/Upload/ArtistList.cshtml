@@ -4,7 +4,6 @@
     ViewData["Title"] = "UploadList";
 }
 
-
 @{
     var i = 1;
 }
@@ -33,7 +32,7 @@
                     {
                         <tr>
                             <th scope="row">@i</th>
-                            <td><img src="~/images/@upload.ImagePath" alt="@upload.Name" style="border-radius:50%;" height="30" width="30" /></td>
+                            <td><img src="@upload.ImagePath" alt="@upload.Name" style="border-radius:50%;" height="30" width="30" /></td>
                             <td>@upload.Name</td>
                             <td>@upload.Albums.Count()</td>
                             <td>@upload.TimeCreated</td>

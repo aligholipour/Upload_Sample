@@ -11,7 +11,8 @@ namespace Upload_Sample.Models.Entities
         public string ArtistName { get; set; }
         public string PodcastName { get; set; }
         public string Image { get; set; }
-        public string TrackFile { get; set; }
         public DateTime CreateDate { get; set; }
+
+        public IEnumerable<PodcastFile> PodcastFiles { get; set; }
     }
 }

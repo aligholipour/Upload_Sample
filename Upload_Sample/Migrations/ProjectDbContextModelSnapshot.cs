@@ -65,11 +65,27 @@ namespace Upload_Sample.Migrations
 
                     b.Property<string>("PodcastName");
 
-                    b.Property<string>("TrackFile");
-
                     b.HasKey("Id");
 
                     b.ToTable("Podcasts");
+                });
+
+            modelBuilder.Entity("Upload_Sample.Models.Entities.PodcastFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("File");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("PodcastId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PodcastId");
+
+                    b.ToTable("PodcastFiles");
                 });
 
             modelBuilder.Entity("Upload_Sample.Models.Entities.Project", b =>
@@ -101,6 +117,8 @@ namespace Upload_Sample.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("TrackName");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AlbumId");
@@ -113,6 +131,14 @@ namespace Upload_Sample.Migrations
                     b.HasOne("Upload_Sample.Models.Entities.Artist", "Artist")
                         .WithMany("Albums")
                         .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Upload_Sample.Models.Entities.PodcastFile", b =>
+                {
+                    b.HasOne("Upload_Sample.Models.Entities.Podcast", "Podcast")
+                        .WithMany("PodcastFiles")
+                        .HasForeignKey("PodcastId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

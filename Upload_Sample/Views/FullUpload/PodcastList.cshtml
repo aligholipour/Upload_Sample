@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Upload_Sample.Models.Entities.Podcast>
+
+@{
+    ViewData["Title"] = "PodcastList";
+}
+
+@{
+    var i = 1;
+}
+
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-header">
+            <a href="/FullUpload/CreatePodcast" class="btn btn-primary col-md-2">New Podcast</a>
+        </div>
+    </div>
+    <div class="card-content collapse show " style="background-color:#fff;">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Artist Name</th>
+                        <th>Podcast Name</th>
+                        <th>Created Date</th>
+                        <th>Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var podcast in Model)
+                    {
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td><img src="~/images/@podcast.Image" alt="@podcast.PodcastName" style="border-radius:50%;" height="30" width="30" /></td>
+                        <td>@podcast.ArtistName</td>
+                        <td>@podcast.PodcastName</td>
+                        <td>@podcast.CreateDate</td>
+                        <td>
+                            <a href="/FullUpload/EditPodcast/@podcast.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <a href="/FullUpload/DeletePodcast/@podcast.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

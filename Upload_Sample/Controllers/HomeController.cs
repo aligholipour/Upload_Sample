@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Upload_Sample.Models;
+using Upload_Sample.Models.ViewModels;
 
 namespace Upload_Sample.Controllers
 {
@@ -18,7 +19,13 @@ namespace Upload_Sample.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Artists.ToList());
+            var list = new IndexViewModel
+            {
+                Artist = _context.Artists.ToList(),
+                Album = _context.Albums.ToList()
+            };
+
+            return View(list);
         }
     }
 }
